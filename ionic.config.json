@@ -1,0 +1,7 @@
+{
+  "name": "proNear-me",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
