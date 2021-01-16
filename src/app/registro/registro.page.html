@@ -1,9 +1,47 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>registro</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title> Registro Usuario</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
+  <h3>Formulario de registro</h3>
+  <ion-item>
+    <ion-label position="floating">Nombre</ion-label>
+    <ion-input [(ngModel)]="usuario.nombre"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Apellido</ion-label>
+    <ion-input [(ngModel)]="usuario.apellido"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Cedula</ion-label>
+    <ion-input [(ngModel)]="usuario.numerocedula"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">E-mail</ion-label>
+    <ion-input [(ngModel)]="usuario.email"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Contrasena</ion-label>
+    <ion-input [(ngModel)]="usuario.password" type="password"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Repita contrasena</ion-label>
+    <ion-input [(ngModel)]="contrasena" type="password"></ion-input>
+  </ion-item>
+
+  <ion-item *ngIf="verificarContrasena"> 
+    <ion-button shape="round" fill="outline" expand="full" (click) ="registrarNuevoUsuario">Registrarse</ion-button>
+  </ion-item>
+
 
 </ion-content>
