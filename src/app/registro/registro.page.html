@@ -21,7 +21,7 @@
 
   <ion-item>
     <ion-label position="floating">Cedula</ion-label>
-    <ion-input [(ngModel)]="usuario.numerocedula"></ion-input>
+    <ion-input [(ngModel)]="usuario.numeroCedula"></ion-input>
   </ion-item>
 
   <ion-item>
@@ -35,12 +35,12 @@
   </ion-item>
 
   <ion-item>
-    <ion-label position="floating">Repita contrasena</ion-label>
+    <ion-label position="floating">Confirmar Contrasena</ion-label>
     <ion-input [(ngModel)]="contrasena" type="password"></ion-input>
   </ion-item>
 
-  <ion-item *ngIf="verificarContrasena"> 
-    <ion-button shape="round" fill="outline" expand="full" (click) ="registrarNuevoUsuario">Registrarse</ion-button>
+  <ion-item> 
+    <ion-button shape="round" fill="outline" expand="full" (click) ="registrarNuevoUsuario()">Registrarse</ion-button>
   </ion-item>
 
 
