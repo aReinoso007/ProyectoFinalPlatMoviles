@@ -15,6 +15,7 @@ export class UsuarioService {
 
     if (usuario.uid == null ){
       usuario.uid = this.afs.createId();
+      usuario.deleted = false;
     }
     refContacto.doc(usuario.uid).set(Object.assign({}, usuario), {merge: true})
   }
