@@ -4,6 +4,7 @@ import { merge, Observable } from 'rxjs';
 import { Usuario } from '../model/usuario';
 import { AngularFireAuth } from '@angular/fire/auth';
 
+
 //import { User } from '@app/shared/models/user.interface';
 
 
@@ -16,17 +17,17 @@ export class UsuarioService {
 
   constructor(public afs: AngularFirestore, public afAuth: AngularFireAuth) {
 
-    afAuth.authState.subscribe(user => (this.isLogged =user));
+    afAuth.authState.subscribe(usuario => (this.isLogged =usuario));
    }
 
    //login metodos
 
-   async onLogin (usuario1: Usuario){
+   async onLogin (usuario: Usuario){
      try{
-       return null;
+       return await this.afAuth.signInWithEmailAndPassword(usuario.email, usuario.password);
 
      }catch (error){
-        console.log('Error en Login', error);
+        console.log('Error del Login', error);
       
      }
    }

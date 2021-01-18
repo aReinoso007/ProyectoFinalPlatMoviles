@@ -1,28 +1,28 @@
-<ion-header>
+<ion-header [translucent]="true">
     <ion-toolbar>
-        <ion-title>login</ion-title>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title> Iniciar Sesión</ion-title>
     </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content [fullscreen]="true">
+    <h3 style="color: rgb(97, 56, 23);">FORMULARIO</h3>
     <ion-item>
-        <ion-label>
-            Ingresar Email
-        </ion-label>
-        <ion-input></ion-input>
+        <ion-label position="floating"> Ingresar E-mail</ion-label>
+        <ion-input [(ngModel)]="usuario.email"></ion-input>
     </ion-item>
 
 
     <ion-item>
-        <ion-label>
-            Ingresar Contraseña
-        </ion-label>
-        <ion-input></ion-input>
-
+        <ion-label position="floating">Ingresar Contrasena</ion-label>
+        <ion-input [(ngModel)]="usuario.password" type="password"></ion-input>
     </ion-item>
 
     <ion-item>
-        <ion-button shape="round" fill="outline" expand="full">Iniciar Sesión</ion-button>
+        <ion-button shape="round" fill="outline" expand="full" (click)="onLogin()"> Login </ion-button>
+        <ion-button shape="round" fill="outline" expand="full" href="../registro"> Nuevo </ion-button>
     </ion-item>
 
 
