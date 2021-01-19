@@ -9,7 +9,6 @@
 
 <ion-content [fullscreen]="true">
   <h3>Formulario de registro</h3>
-  <ion-icon name="person-circle-outline" size="large"></ion-icon>
 
   <ion-item>
     <ion-label position="floating">Nombre</ion-label>
@@ -19,6 +18,19 @@
   <ion-item>
     <ion-label position="floating">Apellido</ion-label>
     <ion-input [(ngModel)]="usuario.apellido"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Genero</ion-label>
+    <ion-select [(ngModel)]="usuario.genero">
+      <ion-select-option value="Masculino">Masculino</ion-select-option>
+      <ion-select-option value="Femenino">Femenino</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">MM DD YY</ion-label>
+    <ion-datetime displayFormat="MM DD YY" placeholder="Seleccionar" [(ngModel)]="usuario.fechaNacimiento"></ion-datetime>
   </ion-item>
 
   <ion-item>

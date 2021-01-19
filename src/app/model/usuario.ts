@@ -10,6 +10,7 @@ export class Usuario {
     public password: string;
     public profesional: boolean;
     public deleted: boolean;
+    public genero: string;
     /*constructor(nombre: string, apellido: string, numeroCedula: string, fechaNacimiento: Date, email: string, pass: string, profesional: boolean) {
         this.nombre = nombre;
         this.apellido = apellido;
