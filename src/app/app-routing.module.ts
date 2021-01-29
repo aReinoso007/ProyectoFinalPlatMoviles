@@ -28,7 +28,15 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
 
+  },  {
+    path: 'direcciones',
+    loadChildren: () => import('./direcciones/direcciones.module').then( m => m.DireccionesPageModule)
+  },
+  {
+    path: 'mapa',
+    loadChildren: () => import('./mapa/mapa.module').then( m => m.MapaPageModule)
   }
+
 
 ];
 

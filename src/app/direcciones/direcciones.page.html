@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title> Registrar Direccion</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+   <!-- this creates a google map on the page with the given lat/lng from -->
+  <!-- the component as the initial center of the map: -->
+  <agm-map [latitude]='lat' [longitude]='lng' (centerChange)="newAddress($event)" >
+    <agm-marker 
+        [latitude]="lat" 
+        [longitude]="lng"></agm-marker>
+
+    <agm-marker [latitude]="currentLocation.latitude" [longitude]="currentLocation.longitude" [iconUrl]="icons.client" [markerDraggable]="false">
+        <agm-info-window><strong>Mi posición</strong></agm-info-window>
+    </agm-marker>
+
+    <agm-marker [latitude]="centerLocation.latitude" [longitude]="centerLocation.longitude" [iconUrl]="icons.pointer" #centerPosition>
+      <agm-info-window><strong>{{centerLocation.address}}</strong></agm-info-window>
+    </agm-marker>
+</agm-map>
+
+{{centerLocation | json}}
+
+
+<ion-item> 
+  <ion-button shape="round" fill="outline" expand="full" (click) ="saveAddress()">Guardar</ion-button>
+</ion-item>
+
+</ion-content>
