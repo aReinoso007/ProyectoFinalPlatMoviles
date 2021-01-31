@@ -1,12 +1,18 @@
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
 import { Platform } from '@ionic/angular';
+import { Observable } from 'rxjs';
+import { Direccion } from '../model/direccion';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GeolocationService {
 
-  constructor(private platform: Platform) { 
+  constructor(
+    private platform: Platform,
+    public afs: AngularFirestore
+    ) { 
   }
 
   async getCurrentLocation(withAddress: boolean = true): Promise<any> {
@@ -51,10 +57,15 @@ export class GeolocationService {
     geocoder.geocode({ location: latlng }, (results, status) => {
       if (results != null) {
         location.address = results[0].formatted_address;
+        console.log(location.address);
         return location.address;
       } 
     });
   } 
+
+  getDirecciones(): Observable<Direccion[]>{
+    return this.afs.collection<Direccion>("direccion").valueChanges();
+  }
 
   
 }

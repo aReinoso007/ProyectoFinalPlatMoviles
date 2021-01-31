@@ -1,9 +1,43 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>mapa</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title> Mapa</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <agm-map 
+
+       [latitude]='lat' 
+
+       [longitude]='long'
+
+       [zoom]='zoom'
+
+       >
+
+        
+
+        <agm-marker 
+
+            *ngFor="let marker of markers" 
+
+            [latitude]="marker.lat" 
+
+              [longitude]="marker.lng">    
+
+                  <agm-info-window #infoWindow>
+
+                      {{ marker.label }}
+
+                </agm-info-window>
+
+        </agm-marker>
+
+        
+
+    </agm-map>
 
 </ion-content>

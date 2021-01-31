@@ -28,14 +28,14 @@ export class AppComponent implements OnInit {
       icon: 'heart'
     },
     {
-      title: 'Mapa',
+      title: 'Direccion',
       url: '/direcciones',
       icon: 'archive'
     },
     {
-      title: 'Trash',
-      url: '/folder/Trash',
-      icon: 'trash'
+      title: 'Lista Direccioes',
+      url: 'mapa',
+      icon: 'map'
     },
     {
       title: 'Spam',
