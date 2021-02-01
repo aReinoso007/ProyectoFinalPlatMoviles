@@ -9,6 +9,9 @@ import { DireccionesPageRoutingModule } from './direcciones-routing.module';
 import { DireccionesPage } from './direcciones.page';
 import { AgmCoreModule } from '@agm/core';
 
+//c98ee318-8238-429c-aa21-d0cc02f7e9ea
+//AIzaSyCrTJjf1ciS5DS5feqEWFX1pntGc7MFJi4
+//AIzaSyCT9wzsIIAkW95uHWVvCbBEP-xtjNbJPow
 @NgModule({
   imports: [
     CommonModule,
@@ -16,7 +19,7 @@ import { AgmCoreModule } from '@agm/core';
     IonicModule,
     DireccionesPageRoutingModule,
     AgmCoreModule.forRoot({
-      apiKey:'AIzaSyD2IuLlso6V8K1LrYcDTKZeCfwPi6EMhfE'
+      apiKey:'AIzaSyCT9wzsIIAkW95uHWVvCbBEP-xtjNbJPow'
     })
   ],
   declarations: [DireccionesPage]

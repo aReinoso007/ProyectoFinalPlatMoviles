@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Direccion } from '../model/direccion';
 import { GeolocationService } from '../services/geolocation.service';
 import { NotificacionesService } from '../services/notificaciones.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { Observable } from 'rxjs';
 
 
@@ -14,10 +14,12 @@ import { Observable } from 'rxjs';
 })
 export class MapaPage implements OnInit {
   /* De Taisha*/
+  title = 'AGM (Angular google maps)';
   lat = -2.383980;
   long = -77.503930;
   zoom=7;
   direcciones: Observable<any[]>;
+  direccion: Direccion = new Direccion();
 
   currentLocation: any = {
     latitude: null,
@@ -75,15 +77,54 @@ export class MapaPage implements OnInit {
 
   constructor(
     private locationService: GeolocationService,
-    private nS: NotificacionesService,
+    private ns: NotificacionesService,
     private route: ActivatedRoute,
-    private router: Router
-  ) { }
+    private router: Router,
+    public usuarioService: UsuarioService,
+  ) { 
+    this.route.queryParams.subscribe(params => {
+      if(this.router.getCurrentNavigation().extras.queryParams){
+        this.direccion = this.router.getCurrentNavigation().extras.queryParams.direccion;
+      }
+    });
+  }
 
   async ngOnInit() {
-    this.direcciones = this.locationService.getDirecciones();
-    console.log(this.direcciones);
+    this.currentLocation = await this.locationService.getCurrentLocation(true);
+    if (this.currentLocation == null || this.currentLocation == undefined){
+      this.ns.notificacionToast('No se pudo determinar su ubucación automáticamente.');
+      this.currentLocation ={
+        latitude: -2.897458,
+        longitude: -79.004488,
+        street: "Centro histórico de Cuenca",
+        active: true
+      }
+    }
   }
+
+  newAddress(event: any) {
+    if (event) {
+      this.centerLocation.latitude = event.lat;
+      this.centerLocation.longitude = event.lng;
+      this.locationService.getAddressOfLocation(this.centerLocation);
+      this.direccion.longitud = event.lng;
+      this.direccion.latitud = event.lat;
+      
+      //this.centerLocation.address = this.centerLocation;
+    } //end if
+  }
+
+  saveAddress(){
+    this.usuarioService.saveLocation(this.direccion);
+    let navigationExtras: NavigationExtras ={
+      queryParams: {
+        direccion: this.direccion
+      }
+    };
+    this.router.navigate(['/mapa'], navigationExtras);
+    alert("Direccion guardada");
+  }
+  
 
  
 

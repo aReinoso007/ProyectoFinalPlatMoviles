@@ -54,6 +54,10 @@ export class UsuarioService {
     return this.afs.collection("usuario").valueChanges();
   }
 
+  getDirecciones(): Observable<any[]>{
+    return this.afs.collection("direccion").valueChanges();
+  }
+
   saveLocation(direccion: Direccion){
     const refDireccion = this.afs.collection("direccion");
 
