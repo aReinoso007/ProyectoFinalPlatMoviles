@@ -13,9 +13,9 @@ export class AppComponent implements OnInit {
   public selectedIndex = 0;
   public appPages = [
     {
-      title: 'Inbox',
-      url: '/folder/Inbox',
-      icon: 'mail'
+      title: 'Inicio',
+      url: 'inicio',
+      icon: 'home'
     },
     {
       title: 'Registrarse',
@@ -23,19 +23,19 @@ export class AppComponent implements OnInit {
       icon: 'paper-plane'
     },
     {
-      title: 'Favorites',
-      url: '/folder/Favorites',
+      title: 'Sing in',
+      url: 'login',
       icon: 'heart'
     },
     {
-      title: 'Archived',
-      url: '/folder/Archived',
+      title: 'Direccion',
+      url: '/direcciones',
       icon: 'archive'
     },
     {
-      title: 'Trash',
-      url: '/folder/Trash',
-      icon: 'trash'
+      title: 'Lista Direccioes',
+      url: 'mapa',
+      icon: 'map'
     },
     {
       title: 'Spam',

@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { merge, Observable } from 'rxjs';
 import { Usuario } from '../model/usuario';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Direccion } from '../model/direccion';
 
 
 //import { User } from '@app/shared/models/user.interface';
@@ -51,6 +52,19 @@ export class UsuarioService {
 
   getUsuarios(): Observable<any[]>{
     return this.afs.collection("usuario").valueChanges();
+  }
+
+  getDirecciones(): Observable<any[]>{
+    return this.afs.collection("direccion").valueChanges();
+  }
+
+  saveLocation(direccion: Direccion){
+    const refDireccion = this.afs.collection("direccion");
+
+    if(direccion.uid == null){
+      direccion.uid = this.afs.createId();
+    }
+    refDireccion.doc(direccion.uid).set(Object.assign({}, direccion), {merge: true})
   }
 }
 
