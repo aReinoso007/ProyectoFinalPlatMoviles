@@ -18,7 +18,7 @@ export class UsuarioService {
 
   constructor(public afs: AngularFirestore, public afAuth: AngularFireAuth) {
 
-    afAuth.authState.subscribe(usuario => (this.isLogged =usuario));
+    afAuth.authState.subscribe(usuario => (this.isLogged = usuario));
    }
 
    //login metodos
