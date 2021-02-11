@@ -1,54 +1,73 @@
-import { User } from '../interfaces/user';
-import { Usuario } from './../model/usuario';
-import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore, , AngularFirestoreDocument } from '@angular/fire/firestore';
+import { Injectable } from '@angular/core';
+import * as firebase from 'firebase/app';
+import { LoadingController, Platform, ToastController } from '@ionic/angular';
+import { Observable, of } from 'rxjs';
+import { Router } from '@angular/router';
+import { User } from '../interfaces/user';
+import { Usuario } from '../model/usuario';
+import { first, switchMap } from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
-  userData: any;
-
+  public user: Observable<any>;
+  loading: any;
   constructor(
-    public afs: AngularFirestore,
-    public agnfireAuth: AngularFireAuth
+    private afs: AngularFirestore,
+    private afAuth: AngularFireAuth,
+    private platform: Platform,
+    private loadingController: LoadingController,
+    private toastController: ToastController
   ) { 
-    this.agnfireAuth.authState.subscribe(user => {
-      if(user){
-        this.userData = user;
-        localStorage.setItem('user', JSON.stringify(this.userData));
-        JSON.parse(localStorage.getItem('user'));
-      }else {
-        localStorage.setItem('user', null);
-        JSON.parse(localStorage.getItem('user'));
+    this.user = this.afAuth.authState
+    .pipe(
+      switchMap( user => {
+        if(user){
+          return this.afs.doc<Usuario>(`users/${user.uid}`).valueChanges();
+        }else {
+          return of(null);
+        }
       }
-    })
+
+      )
+    )
   }
 
-  registerUser(email: string, password: string){
-    return this.agnfireAuth.createUserWithEmailAndPassword(email, password);
+  async getCurrentUser(): Promise<any>{
+    return this.user.pipe(first()).toPromise();
   }
 
-  setUserData(user){
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
-    const userData: User = {
-      uid: user.uid,
-      email: user.email,
-      nombre: user.nombre,
-      apellido: user.apellido,
-      fechaNacimiento: user.fechaNacimiento,
-      genero: user.genero,
-      emailVerified: user.emailVerified,
-      deleted: user.deleted,
-      createdAt: user.createdAt
+  async register(nombre: string, email: string, password: string){
+    try{
+      this.loading = await this.loadingController.create({
+        message: "Espere por favor..."
+      });
+      await this.loading.present();
+      await this.afAuth.createUserWithEmailAndPassword(email, password);
+
+      const user = await this.afAuth.currentUser;
+      this.loading.dismiss();
+      return await user.updateProfile({
+          displayName: nombre,
+          photoURL: "https://www.pepperhub.in/wp-content/uploads/2020/11/user-male.png"
+      });
+    }catch(error){
+      console.error("Error"+JSON.stringify(error));
+      this.loading.dismiss();
+      return error;
     }
-    return userRef.set(userData, {
-      merge: true
-    })
   }
 
-  
+  async login(email: string, password: string){
+    try{
+      return await this.afAuth.signInWithEmailAndPassword(email, password);
+    }catch(error){
+      
+    }
+  }
+
 }

@@ -19,7 +19,7 @@ export class UsuarioService {
 
   constructor(public afs: AngularFirestore, public afAuth: AngularFireAuth) {
 
-    afAuth.authState.subscribe(usuario => (this.isLogged =usuario));
+    afAuth.authState.subscribe(usuario => (this.isLogged = usuario));
    }
 
    //login metodos
@@ -62,6 +62,10 @@ export class UsuarioService {
 
   getUsuarios(): Observable<any[]>{
     return this.afs.collection("usuario").valueChanges();
+  }
+
+  getDirecciones(): Observable<any[]>{
+    return this.afs.collection("direccion").valueChanges();
   }
 
   saveLocation(direccion: Direccion){
