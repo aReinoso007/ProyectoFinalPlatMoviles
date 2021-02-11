@@ -2,15 +2,14 @@ import { Profesion } from './profesion';
 export class Usuario {
 
     uid: string;
-    public nombre: string;
-    public apellido: string;
-    public numeroCedula: string;
-    public fechaNacimiento: Date;
-    public email: string;
-    public password: string;
-    public profesional: boolean;
-    public deleted: boolean;
-    public genero: string;
+    nombre: string;
+    apellido: string;
+    fechaNacimiento: Date;
+    email: string;
+    deleted: boolean;
+    genero: string;
+    createdAt: number;
+    emailVerified: boolean;
     /*constructor(nombre: string, apellido: string, numeroCedula: string, fechaNacimiento: Date, email: string, pass: string, profesional: boolean) {
         this.nombre = nombre;
         this.apellido = apellido;

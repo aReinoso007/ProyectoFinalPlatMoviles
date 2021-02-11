@@ -34,23 +34,20 @@
   </ion-item>
 
   <ion-item>
-    <ion-label position="floating">Cedula</ion-label>
-    <ion-input [(ngModel)]="usuario.numeroCedula"></ion-input>
-  </ion-item>
-
-  <ion-item>
     <ion-label position="floating">E-mail</ion-label>
     <ion-input [(ngModel)]="usuario.email"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label position="floating">Contrasena</ion-label>
-    <ion-input [(ngModel)]="usuario.password" type="password"></ion-input>
+    <ion-input [(ngModel)]="contrasena" [type]="showPassword ? 'text' : 'password'" placeholder="Contrasena"></ion-input>
+    <ion-icon slot="end" [name]="passwordToggleIcon" (click)="togglePassword()"></ion-icon>
   </ion-item>
 
   <ion-item>
     <ion-label position="floating">Confirmar Contrasena</ion-label>
-    <ion-input [(ngModel)]="contrasena" type="password"></ion-input>
+    <ion-input [(ngModel)]="contrasena2" [type]="showPassword ? 'text' : 'password'" placeholder="Contrasena"></ion-input>
+    <ion-icon slot="end" [name]="passwordToggleIcon" (click)="togglePassword()"></ion-icon>
   </ion-item>
 
   <ion-item> 
