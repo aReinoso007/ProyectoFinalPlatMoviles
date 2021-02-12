@@ -5,9 +5,8 @@ import * as firebase from 'firebase/app';
 import { LoadingController, Platform, ToastController } from '@ionic/angular';
 import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
-import { Usuario } from '../model/usuario';
 import { first, switchMap } from "rxjs/operators";
-import { User } from '../interface/user';
+import { User } from '../model/user';
 
 @Injectable({
   providedIn: 'root'
@@ -114,7 +113,8 @@ export class AuthService {
             })
   }*/
 
-  SetUserData(user){
+  SetUserData(user: User){
+    console.log("uid auth service "+user.uid)
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`usuario/${user.uid}`);
     const userData: User = {
       uid: user.uid,
@@ -133,6 +133,18 @@ export class AuthService {
       localStorage.removeItem('user');
       this.router.navigate(['login']);
     })
+  }
+
+  getCurrentUsr(){
+    var user = firebase.default.auth().currentUser;
+    const userData: User = {
+      uid: user.uid,
+      displayName: user.displayName,
+      email: user.email,
+      photoURL: user.photoURL,
+      emailVerified: user.emailVerified
+    }
+    return userData;
   }
 
   /*

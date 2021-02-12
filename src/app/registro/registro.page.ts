@@ -72,9 +72,8 @@ export class RegistroPage implements OnInit {
     this.authService.registerUser(this.email, this.contrasena)
     .then((res)=>{
       this.authService.sendVerificationEmail();
-      console.log("email verificacion enviado")
       this.router.navigate(['/confirmacion']);
-      console.log(res);
+      console.log("respuesta del registro: "+res);
     }).catch((err)=>{
       window.alert(err.message);
     })

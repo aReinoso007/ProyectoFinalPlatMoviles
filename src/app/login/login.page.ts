@@ -22,13 +22,16 @@ export class LoginPage implements OnInit {
     ) { }
 
   ngOnInit() {
+    this.email = "";
+    this.password = "";
     console.log(localStorage.getItem('user'));
   }
 
   onLogin(){
     this.authService.loginEmailPassword(this.email, this.password)
     .then((res)=>{
-
+      this.router.navigate(['dashboard']);
+      
     }).catch((err)=>{
       window.alert(err.message)
     })
