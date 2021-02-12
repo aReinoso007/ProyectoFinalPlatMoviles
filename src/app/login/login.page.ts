@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UsuarioService } from '../services/usuario.service';
 import { Usuario } from '../model/usuario';
-import { async } from '@angular/core/testing';
 import { AuthService } from '../services/auth.service';
 
 
@@ -20,7 +18,6 @@ export class LoginPage implements OnInit {
 
   constructor(
     private router: Router, 
-    private usuarioLogin: UsuarioService,
     private authService: AuthService
     ) { }
 
@@ -31,7 +28,7 @@ export class LoginPage implements OnInit {
   onLogin(){
     this.authService.loginEmailPassword(this.email, this.password)
     .then((res)=>{
-      
+
     }).catch((err)=>{
       window.alert(err.message)
     })

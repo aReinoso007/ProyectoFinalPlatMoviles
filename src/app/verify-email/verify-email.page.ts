@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-verify-email',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VerifyEmailPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    public router: Router,
+    public authService: AuthService
+  ) { }
 
   ngOnInit() {
+  }
+
+  getToLogin(){
+    this.router.navigate(['/login']);
+
   }
 
 }
