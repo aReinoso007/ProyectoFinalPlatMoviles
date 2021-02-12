@@ -48,7 +48,11 @@ const routes: Routes = [
   {
     path: 'perfil',
     loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
+  },  {
+    path: 'datosu',
+    loadChildren: () => import('./private/datosu/datosu.module').then( m => m.DatosuPageModule)
   }
+
 
 
 ];

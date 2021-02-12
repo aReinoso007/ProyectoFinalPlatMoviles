@@ -41,7 +41,7 @@ export class PrestadorServiciosPage implements OnInit {
 
   async registerPrestador(){
     this.email = this.usuario.email;
-    this.authService.registerUser(this.email, this.contrasena)
+    this.authService.registerUser(this.email, this.contrasena, 'prestador')
     .then((res)=>{
       this.authService.sendVerificationEmail();
       console.log("email verificacion enviado")
