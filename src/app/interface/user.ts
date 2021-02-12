@@ -1,6 +1,4 @@
-import { Profesion } from './profesion';
-export class Usuario {
-
+export interface User {
     uid: string;
     nombre: string;
     apellido: string;
@@ -14,4 +12,5 @@ export class Usuario {
     rol: string;
     photoURL: string;
     createdAt: number;
+
 }

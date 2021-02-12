@@ -22,7 +22,7 @@ import { environment } from 'src/environments/environment';
 import { AuthService } from './services/auth.service';
 
 /* Auth Guard */
-
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
   declarations: [AppComponent],
