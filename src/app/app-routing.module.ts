@@ -39,6 +39,10 @@ const routes: Routes = [
   {
     path: 'verify-email',
     loadChildren: () => import('./verify-email/verify-email.module').then( m => m.VerifyEmailPageModule)
+  },
+  {
+    path: 'prestador-servicios',
+    loadChildren: () => import('./prestador-servicios/prestador-servicios.module').then( m => m.PrestadorServiciosPageModule)
   }
 
 
