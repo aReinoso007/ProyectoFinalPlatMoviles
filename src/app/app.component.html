@@ -1,11 +1,8 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay" *ngIf="(user | async) as user">
-
-      <ion-content>
-        <ion-list id="inbox-list">
-          
-          <ion-item>
+    <!--  
+      *ngIf="(user | async) as user"
+      <ion-item>
             <ion-avatar slot="start">
                 <img [src]="user.photoURL" />
             </ion-avatar>
@@ -14,6 +11,13 @@
                 <ion-note>{{user.email}}</ion-note>
             </ion-label>
           </ion-item>
+    -->
+    <ion-menu contentId="main-content" type="overlay">
+
+      <ion-content>
+        <ion-list id="inbox-list">
+          
+          
 
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
             <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">

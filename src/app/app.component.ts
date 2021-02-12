@@ -73,7 +73,7 @@ export class AppComponent implements OnInit {
           if(user.rol = 'user'){
             this.router.navigate(['inicio'])
           }else{
-            this.router.navigate(['']);
+            this.router.navigate(['inicio']);
           }
         }else {
           this.router.navigate(['folder/inbox']);
