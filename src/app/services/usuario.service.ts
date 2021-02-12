@@ -4,6 +4,7 @@ import { merge, Observable } from 'rxjs';
 import { Usuario } from '../model/usuario';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Direccion } from '../model/direccion';
+import * as firebase from 'firebase/app';
 
 
 //import { User } from '@app/shared/models/user.interface';
@@ -18,14 +19,14 @@ export class UsuarioService {
 
   constructor(public afs: AngularFirestore, public afAuth: AngularFireAuth) {
 
-    afAuth.authState.subscribe(usuario => (this.isLogged =usuario));
+    afAuth.authState.subscribe(usuario => (this.isLogged = usuario));
    }
 
    //login metodos
 
-   async onLogin (usuario: Usuario){
+   async onLogin (email: string, contrasena: string){
      try{
-       return await this.afAuth.signInWithEmailAndPassword(usuario.email, usuario.password);
+       return await this.afAuth.signInWithEmailAndPassword(email, contrasena);
 
      }catch (error){
         console.log('Error del Login', error);
@@ -40,12 +41,21 @@ export class UsuarioService {
 
   
 
-  registrarUsuario(usuario: Usuario){
+  registrarUsuario(usuario: Usuario, email: string, password: string){
     const refContacto = this.afs.collection("usuario");
 
     if (usuario.uid == null ){
       usuario.uid = this.afs.createId();
       usuario.deleted = false;
+      firebase.default.auth().createUserWithEmailAndPassword(email, password)
+      .then((user)=> {
+        console.log('creado exitosamente')
+      })
+      .catch((error)=>{
+        var errorCode = error.code;
+        var errorMesssage = error.message;
+        console.log('codigo de error: '+ errorCode + 'mensaje: '+ errorMesssage);
+      });
     }
     refContacto.doc(usuario.uid).set(Object.assign({}, usuario), {merge: true})
   }

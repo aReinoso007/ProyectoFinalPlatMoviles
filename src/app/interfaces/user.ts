@@ -1,13 +1,12 @@
-import { Profesion } from './profesion';
-export class Usuario {
-
+export interface User {
     uid: string;
+    email: string;
     nombre: string;
     apellido: string;
     fechaNacimiento: Date;
-    email: string;
-    deleted: boolean;
-    genero: string;
-    createdAt: number;
     emailVerified: boolean;
+    deleted: boolean;
+    createdAt: number;
+    genero: string;
+
 }
