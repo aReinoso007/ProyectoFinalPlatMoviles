@@ -1,10 +1,12 @@
+
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
 import * as firebase from "firebase/app";
 import { LoadingController, Platform, ToastController } from '@ionic/angular';
 import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
+import { User } from '../interfaces/user';
 import { Usuario } from '../model/usuario';
 import { first, switchMap } from "rxjs/operators";
 import { GooglePlus } from '@ionic-native/google-plus/ngx';

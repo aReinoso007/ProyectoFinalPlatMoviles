@@ -21,12 +21,12 @@ export class LoginPage implements OnInit {
   }
 
   async onLogin(){
-    const usuario = await this.usuarioLogin.onLogin(this.usuario);
+    /*const usuario = await this.usuarioLogin.onLogin(this.usuario);
     if(usuario){
       console.log('Login Exitoso');
       this.router.navigateByUrl('/');
       
-    }
+    }*/
 
   }
 
