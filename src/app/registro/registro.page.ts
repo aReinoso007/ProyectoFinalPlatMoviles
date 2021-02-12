@@ -66,10 +66,13 @@ export class RegistroPage implements OnInit {
     if(this.form.ge)
   }*/
   
+  //esta funcion se esta usando
   async registerUser(){
     this.email = this.usuario.email;
     this.authService.registerUser(this.email, this.contrasena)
     .then((res)=>{
+      this.authService.sendVerificationEmail();
+      console.log("email verificacion enviado")
       this.router.navigate(['/confirmacion']);
       console.log(res);
     }).catch((err)=>{
