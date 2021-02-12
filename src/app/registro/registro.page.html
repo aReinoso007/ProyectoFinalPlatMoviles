@@ -8,7 +8,23 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <h3>Formulario de registro</h3>
+  <ion-item>
+    <ion-label position="floating">Email</ion-label>
+    <ion-input type="text" #email required [(ngModel)]="usuario.email"></ion-input>
+  </ion-item>
+
+  <ion-item lines="full">
+    <ion-label position="floating">Password</ion-label>
+    <ion-input type="password" #password required [(ngModel)]="contrasena"></ion-input>
+  </ion-item>
+
+  <ion-row>
+    <ion-col> 
+    <ion-button type="submit" (click)="registerUser()" expand="block">Register</ion-button>
+    </ion-col>
+  </ion-row>
+  <!--
+    <h3>Formulario de registro</h3>
 
   <ion-item>
     <ion-label position="floating">Nombre</ion-label>
@@ -53,6 +69,7 @@
   <ion-item> 
     <ion-button shape="round" fill="outline" expand="full" (click) ="registrarNuevoUsuario()">Registrarse</ion-button>
   </ion-item>
+  -->
 
 
 </ion-content>

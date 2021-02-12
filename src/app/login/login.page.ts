@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { UsuarioService } from '../services/usuario.service';
 import { Usuario } from '../model/usuario';
 import { async } from '@angular/core/testing';
+import { AuthService } from '../services/auth.service';
 
 
 
@@ -14,19 +15,27 @@ import { async } from '@angular/core/testing';
 export class LoginPage implements OnInit {
 
   usuario: Usuario = new Usuario();
+  email: string = "";
+  password: string = "";
 
-  constructor(private router: Router, private usuarioLogin: UsuarioService) { }
+  constructor(
+    private router: Router, 
+    private usuarioLogin: UsuarioService,
+    private authService: AuthService
+    ) { }
 
   ngOnInit() {
+    console.log(localStorage.getItem('user'));
   }
 
-  async onLogin(){
-    /*const usuario = await this.usuarioLogin.onLogin(this.usuario);
-    if(usuario){
-      console.log('Login Exitoso');
-      this.router.navigateByUrl('/');
+  onLogin(){
+    this.authService.loginEmailPassword(this.email, this.password)
+    .then((res)=>{
       
-    }*/
+    }).catch((err)=>{
+      window.alert(err.message)
+    })
+    console.log(localStorage.getItem('user'));
 
   }
 

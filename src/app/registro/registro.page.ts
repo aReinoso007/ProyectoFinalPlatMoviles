@@ -16,13 +16,17 @@ export class RegistroPage implements OnInit {
   contrasena: string;
   contrasena2: string;
   showPassword = false;
-  email: string;
+
+  email: string = "";
+  password: string = "";
+
   passwordToggleIcon = 'eye';
   estado: boolean = false;
   constructor(
     public router: Router, 
     private route: ActivatedRoute,
-    public  usuarioService: UsuarioService
+    public  usuarioService: UsuarioService,
+    public authService: AuthService
     ) { 
       this.route.queryParams.subscribe(params => {
         console.log(params);
@@ -34,11 +38,6 @@ export class RegistroPage implements OnInit {
     }
 
   ngOnInit() {
-    this.usuario.nombre = '';
-    this.usuario.apellido = '';
-    this.usuario.email = '';
-    this.usuario.fechaNacimiento = new Date();
-    this.usuario.genero = '';
   }
 
   togglePassword():void {
@@ -67,7 +66,15 @@ export class RegistroPage implements OnInit {
     if(this.form.ge)
   }*/
   
-  registerUser(){
+  async registerUser(){
+    this.email = this.usuario.email;
+    this.authService.registerUser(this.email, this.contrasena)
+    .then((res)=>{
+      this.router.navigate(['/confirmacion']);
+      console.log(res);
+    }).catch((err)=>{
+      window.alert(err.message);
+    })
 
   }
 
