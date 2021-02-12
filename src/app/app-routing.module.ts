@@ -43,6 +43,10 @@ const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () => import('./private/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },
+  {
+    path: 'perfil',
+    loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
   }
 
 

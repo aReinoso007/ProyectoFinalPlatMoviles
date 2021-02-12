@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/model/user';
 import { Usuario } from 'src/app/model/usuario';
@@ -10,19 +11,26 @@ import { UsuarioService } from 'src/app/services/usuario.service';
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
-  usuario: User = new User();
-  user: Usuario = new Usuario();
-  usuarioN: any;
-  rol: string;
+
+  user: any;
+  proveedores = [];
+  solicitud: Observable<any[]>;
+  resultados = [];
   constructor(
     public authService: AuthService,
     public usuarioService: UsuarioService
   ) { }
 
   ngOnInit() {
-    this.setUserData();
+    this.authService.user$.subscribe(user=>{
+      this.user = user;
+      if(user != null ){
+        
+      }
+    })
   }
 
+  /*
   setUserData(){
     this.usuario = this.authService.getCurrentUsr()
     this.usuarioN = this.authService.user$
@@ -37,5 +45,6 @@ export class DashboardPage implements OnInit {
     this.usuarioService.registerUserWithEmail(this.user);
     window.alert("Datos actualizados correctamente")
   }
+  */
 
 }

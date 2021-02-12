@@ -19,7 +19,7 @@ export class AuthService {
   public user$: Observable<any>;
   user: User;
   userData: User;
-
+  loading: any;
   constructor(
     public afs: AngularFirestore,
     public afAuth: AngularFireAuth,
@@ -28,6 +28,7 @@ export class AuthService {
     private toastController: ToastController,
     public ngZone: NgZone,
     public router: Router,
+    private loadingCtrl: LoadingController
     //private googlePlus: GooglePlus
   ) { 
     this.user$ = this.afAuth.authState
@@ -123,15 +124,21 @@ async webGoogleLogin(): Promise<void> {
 
 async emailPasswordLogin(email: string, password: string, rol): Promise<void> {
   try {
+    this.loading = await this.loadingCtrl.create({
+      message: 'Espere..'
+    });  
     const emailCredential = firebase.default.auth.EmailAuthProvider.credential(email, password);
     const firebaseUser = await firebase.default.auth().signInWithCredential(emailCredential);
     if(rol == 'user'){
+      this.loading.dismiss();
       return await this.updateUserData(firebaseUser.user, "email");
     }else {
+      this.loading.dismiss();
       return await this.updateUserData(firebaseUser.user, "email");
     }
     
   } catch (err) {
+    this.loading.dismiss();
     return err;
   } 
 } 

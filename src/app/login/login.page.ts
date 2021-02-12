@@ -13,8 +13,8 @@ import { AuthService } from '../services/auth.service';
 export class LoginPage implements OnInit {
 
   usuario: Usuario = new Usuario();
-  email: string = "";
-  password: string = "";
+  email: string;
+  password: string;
 
   constructor(
     private router: Router, 
@@ -22,20 +22,15 @@ export class LoginPage implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.email = "";
-    this.password = "";
-    console.log(localStorage.getItem('user'));
   }
 
-  onLogin(){
-    this.authService.loginEmailPassword(this.email, this.password)
-    .then((res)=>{
+  async login(){
+    let error = await this.authService.emailPasswordLogin(this.email, this.password, 'usuario')
+    if(error === undefined ){
       this.router.navigate(['dashboard']);
-      
-    }).catch((err)=>{
-      window.alert(err.message)
-    })
-    console.log(localStorage.getItem('user'));
+    }else {
+      alert(JSON.stringify(error));
+    }
 
   }
 
