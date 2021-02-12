@@ -76,5 +76,15 @@ export class UsuarioService {
     }
     refDireccion.doc(direccion.uid).set(Object.assign({}, direccion), {merge: true})
   }
+
+  registerUserWithEmail(usuario: Usuario){
+    const refContacto = this.afs.collection("usuario");
+
+    if (usuario.uid == null ){
+      usuario.uid = this.afs.createId();
+      usuario.deleted = false;
+    }
+    refContacto.doc(usuario.uid).set(Object.assign({}, usuario), {merge: true})
+  }
 }
 

@@ -9,5 +9,6 @@ export class Usuario {
     deleted: boolean;
     genero: string;
     createdAt: number;
-    emailVerified: boolean;
+    uidMail: string;
+    rol: string;
 }

@@ -11,7 +11,8 @@ export const environment = {
     storageBucket: "pronear-me.appspot.com",
     messagingSenderId: "902988809163",
     appId: "1:902988809163:web:265fa06ac8de025b266c4e"
-  }
+  },
+  googleWebClientId: ''
 };
 
 /*

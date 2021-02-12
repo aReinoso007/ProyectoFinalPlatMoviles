@@ -13,12 +13,11 @@ import { UsuarioService } from '../services/usuario.service';
 export class RegistroPage implements OnInit {
   
   usuario: Usuario = new Usuario();
-  contrasena: string;
-  contrasena2: string;
   showPassword = false;
 
-  email: string = "";
-  password: string = "";
+  email: string;
+  nombre: string;
+  contrasena: string;
 
   passwordToggleIcon = 'eye';
   estado: boolean = false;
@@ -69,7 +68,7 @@ export class RegistroPage implements OnInit {
   //esta funcion se esta usando
   async registerUser(){
     this.email = this.usuario.email;
-    this.authService.registerUser(this.email, this.contrasena)
+    this.authService.registerUser(this.nombre, this.email, this.contrasena)
     .then((res)=>{
       this.authService.sendVerificationEmail();
       this.router.navigate(['/confirmacion']);
@@ -77,7 +76,26 @@ export class RegistroPage implements OnInit {
     }).catch((err)=>{
       window.alert(err.message);
     })
+  }
 
+  async registro(){
+    let error = await this.authService.registerUser(this.nombre, this.email, this.contrasena)
+    if (this.nombre == undefined || this.email == undefined || this.contrasena == undefined){
+      alert("Todos los campos son obligatorios")
+    }else{
+      if(error === undefined ){
+        this.authService.emailPasswordLogin(this.email, this.contrasena, 'user').then(res =>{
+          this.router.navigate(['login']);
+          alert("cuenta creada exitosamente ");
+        })
+      }else {
+        let e = JSON.stringify(error)
+        if (e.includes('The email address is badly formatted'))
+          alert("Debe ingresar un correo válido")
+        if (e.includes('Password should be at least 6 characters'))
+          alert("La contraseña debe tener por lo menos 6 caracteres")
+      }
+    }
   }
 
 }

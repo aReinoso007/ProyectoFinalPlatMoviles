@@ -8,8 +8,47 @@
 </ion-header>
 
 <ion-content>
+  
+
+</ion-content>
+
+<!--
   <ion-item>
     <ion-label>Bienvenido {{usuario.email }}</ion-label>
   </ion-item>
-  <ion-button type="submit" (click)="authService.singOut()" expand="block">Logout</ion-button>
-</ion-content>
+  <h1>Actualicemos algunos datos tuyos</h1>
+  <ion-item>
+    <ion-label position="floating">Nombre</ion-label>
+    <ion-input [(ngModel)]="user.nombre"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Apellido</ion-label>
+    <ion-input [(ngModel)]="user.apellido"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Genero</ion-label>
+    <ion-select [(ngModel)]="user.genero">
+      <ion-select-option value="Masculino">Masculino</ion-select-option>
+      <ion-select-option value="Femenino">Femenino</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Rol</ion-label>
+    <ion-select [(ngModel)]="user.rol">
+      <ion-select-option value="Prestador">Prestador de servicios</ion-select-option>
+      <ion-select-option value="Solicitante">Solicitante de servicios</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">MM DD YY</ion-label>
+    <ion-datetime displayFormat="MM DD YY" placeholder="Seleccionar" [(ngModel)]="user.fechaNacimiento"></ion-datetime>
+  </ion-item>
+
+  <ion-item> 
+    <ion-button shape="round" fill="outline" expand="full" (click) ="updateUserData()">Registrarse</ion-button>
+  </ion-item>
+-->

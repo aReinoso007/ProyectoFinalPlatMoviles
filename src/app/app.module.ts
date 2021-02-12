@@ -24,6 +24,8 @@ import { AuthService } from './services/auth.service';
 /* Auth Guard */
 import { AuthGuard } from './guards/auth.guard';
 
+//import { GooglePlus } from '@ionic-native/google-plus';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -42,6 +44,7 @@ import { AuthGuard } from './guards/auth.guard';
     AuthService,
     StatusBar,
     SplashScreen,
+    //GooglePlus,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
